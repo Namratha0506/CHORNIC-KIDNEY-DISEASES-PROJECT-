@@ -1,0 +1,66 @@
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.callbacks import EarlyStopping
+
+# Load dataset (replace 'ckd_data.csv' with your actual dataset)
+data = pd.read_csv('ckd_data.csv')
+
+# Display the first few rows of the dataset
+print(data.head())
+
+# Preprocess the dataset
+# Drop missing values or perform imputation if necessary
+data = data.dropna()
+
+# Encoding categorical variables
+data['class'] = LabelEncoder().fit_transform(data['class'])  # Encode 'class' column
+
+# Separate features and target variable
+X = data.drop(['class'], axis=1)  # Features
+y = data['class']  # Target variable (0 for no CKD, 1 for CKD)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Feature scaling
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Define the deep learning model
+model = Sequential([
+    Dense(64, input_shape=(X_train.shape[1],), activation='relu'),
+    Dropout(0.3),
+    Dense(32, activation='relu'),
+    Dropout(0.3),
+    Dense(16, activation='relu'),
+    Dense(1, activation='sigmoid')  # Sigmoid activation for binary classification
+])
+
+# Compile the model
+model.compile(optimizer=Adam(learning_rate=0.001), 
+              loss='binary_crossentropy', 
+              metrics=['accuracy'])
+
+# Set early stopping
+early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
+
+# Train the model
+history = model.fit(X_train, y_train, epochs=100, batch_size=16, 
+                    validation_split=0.2, callbacks=[early_stopping])
+
+# Evaluate the model on test data
+test_loss, test_accuracy = model.evaluate(X_test, y_test)
+print(f"Test Accuracy: {test_accuracy * 100:.2f}%")
+
+# Predict on new data (example)
+new_data = np.array([[58, 80, 1.02, 1, 0]])  # Replace with actual feature values
+new_data_scaled = scaler.transform(new_data)
+predicted_class = model.predict(new_data_scaled)
+print("Predicted CKD Class:", "CKD" if predicted_class >= 0.5 else "No CKD")
