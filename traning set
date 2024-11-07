@@ -8,7 +8,7 @@ from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping
 
-# Load dataset (replace 'ckd_data.csv' with your actual dataset)
+# Load dataset ( 'ckd_data.csv' )
 data = pd.read_csv('ckd_data.csv')
 
 # Display the first few rows of the dataset
