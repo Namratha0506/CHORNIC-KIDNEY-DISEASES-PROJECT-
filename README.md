@@ -1,55 +1,11 @@
-This repository covers the evaluation and design work for my MSc Data Science project "End-to-End Deep Learning Architecture for Chronic Kidney Disease Prediction and Risk Assessment." With an emphasis on CNN-based architectures, the project seeks to enhance early CKD diagnosis and risk assessment by utilizing machine learning and deep learning techniques.
-Details of the Dataset:
-The UCI Machine Learning Repository provided the dataset for this study. It consists of 400 patient records with 24 clinical characteristics, such as clinical signs, outcomes of tests, and demographic data. Since the dataset is accessible to everyone under the Creative Commons Attribution 4.0 license and excludes any personal information, ethical standards have been respected.
-Tools and Technologies:
-Python 3 is the programming language.
-Libraries used : Pandas, Matplotlib, Scikit-learn, TensorFlow, Keras, and NumPy
-Frameworks: Colab by Google
-Models:
-The following steps form the methodology for this project:
-Preprocessing of Data:
-Utilizing statistical methods to deal with missing values (e.g., mode imputation for categorical data, mean imputation for numerical data).
-To guarantee continuous feature scaling, the dataset should be standardized.
-Numerical illustrations of categorical variables.
-reducing class imbalance and enhancing the model's ability to recognize minority-class instances (CKD patients) by using the Synthetic Minority Oversampling Technique (SMOTE).
-Selection of Features:
-Recursive Feature Elimination (RFE) is a technique to simplify the dataset to identify the most important features for prediction.
-Development of Models:
-Three models are currently implemented and taught:
-due to the ease of use and understanding, the Decision Tree (DT) model is frequently utilized as a baseline.
-Applied for its instance-based learning technique, k-Nearest Neighbors (kNN) performs smoothly with balanced data.
-The 12-layer design of convolutional neural networks (CNNs) includes batch normalization along with dropout layers to improve generalization and avoid overfitting.
-enhancing each strategy hyperparameters to boost efficiency.
-Evaluation of Performance:
-Evaluating the models using metrics like:
-Accuracy: Represents the number of cases that were accurately anticipated.
-Precision: Assesses the extent to which the model reduces false positives.
-The ability of an individual for precise determination of true positives (CKD cases) can be determined by recall.
-For a fair review, the F1 Score provides a harmonic mean of recall and precision.
-analyzing the models' performance on a hold-out test set to try to discover the best solution.
-Analysis and Visualization:
-examining the ROC curves and confusion matrices helps to understand the models' sorting skills.
-understanding the contributions of various attributes to CKD prediction via visualizing feature importance.
-Summary of the Results:
-The best results have been achieved by the Convolutional Neural Network (CNN):
-Accuracy: 97.50%
-Precision: 98.41%
-Recall: 97.42%
-F1 Score: 97.33%
-Contributors
-Namratha Reddy Donthi, a University of Hertfordshire MSc Data Science 
-studentIn charge: Luigi Alfonsi
-Recognitions
-A few people make this project possible:
-Machine Learning Repository from UCI
-Open-source libraries, which include Keras and TensorFlow
-Assistance from Luigi Alfonsi, my supervisor
-Permit:
-The MIT License regulates the use of this repository. For extra details, see the LICENSE file.
-Future Extent:
-through multimodal data, especially lifestyle and genetic data, to enhance forecasts.
-Research into lightweight models that are suitable for real-time CKD prediction in situations with limited resources.
-with Explainable AI (XAI) techniques to enhance the clinical applicability and interpretability of models.
+Chronic Kidney Disease (CKD) is one of the dominant global health issues that may come up as serious complications of kidney failure and cardiovascular diseases if early not detected. The conventional diagnostic tools occasionally do not succeed in identifying CKD at the beginning stage, due mainly to the complicated interactions between different medical risk factors and the imbalance in patient data. Machine learning has demonstrated immense potential in medical diagnostics by producing precise and automated disease prediction models. The present study addresses the issue of CKD detection on the basis of CAD model improvement in ML system through the use of the ensemble machine learning technique and thus achieve higher classification accuracy and reliability
+In this research, several machine learning models are used, such as K-Nearest Neighbors (KNN), Decision Trees, Random Forest, and XGBoost, to better detect CKD. It is also deployed of a Stacking Ensemble model, which combines the individual classifiers to provide more accurate predictions. The dataset for this research comes from the UCI Machine Learning Repository, which was collected from patient medical records and includes test cards about blood, urine, and other clinical indicators. Data pre-processing steps, such as missing value imputation, feature normalization, and class imbalance correction using Synthetic Minority Over-Sampling Technique (SMOTE), are performed for the better learning of the models from the data.
+It was found in the experiments that the Stacking Ensemble model leads to the best accuracy of 99% and an AUC-ROC score of 1.0, which are higher values than the ones obtained by using the individual classifiers. As for the Random Forest and XGBoost models, they perform well with AUC-ROC scores of 0.988 and 0.970, respectively, while for the Decision Tree model, a lower generalization capability is observed. These results have only revealed that ensemble learning techniques significantly improve CKD prediction accuracy by taking advantage of the unique strength of the combination.
+This project has significant real-world implications, particularly for early CKD diagnosis and medical decision-making. By integrating machine learning-based predictive models into clinical workflows, healthcare professionals can identify high-risk patients early, reducing the chances of misdiagnosis and enabling timely intervention. The proposed model can be incorporated into electronic health record (EHR) systems to assist nephrologists and other medical practitioners in assessing CKD risk and recommending further diagnostic procedures.
+To use this project, ensure you have Python installed along with the necessary libraries such as NumPy, Pandas, Scikit-learn, XGBoost, and Matplotlib. The provided Jupyter Notebook includes the complete implementation, from data preprocessing to model evaluation. Clone this repository and run the notebook to explore the results, modify the models, and experiment with different machine learning techniques.
+While the model has achieved high accuracy, further improvements can be made by validating it on larger and more diverse datasets. Future work should also focus on improving the interpretability of predictions using explainable AI techniques such as SHAP values, ensuring that healthcare professionals can understand and trust the model's decisions. Additionally, integrating this model into real-world clinical applications will require further testing, optimization, and regulatory compliance to ensure its practical usability in healthcare settings.
+
+
 
 
 
